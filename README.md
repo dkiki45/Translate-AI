@@ -2,11 +2,11 @@
 
 A real-time speech translation system operating entirely locally. This project integrates a Chrome Extension frontend with a Python-based AI backend to provide live captioning for both microphone input and system audio (e.g., video conferences, streams).
 
-## 🎥 Demonstração do Projeto
+## 🎥 Demo Video
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=ewmPrWxRrt8" target="_blank">
-    <img src="https://img.youtube.com/vi/ewmPrWxRrt8/0.jpg" alt="Demonstração do Projeto" width="600">
+    <img src="https://img.youtube.com/vi/ewmPrWxRrt8/0.jpg" alt="Demo Video" width="600">
   </a>
 </p>
 
