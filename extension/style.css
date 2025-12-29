@@ -1,0 +1,185 @@
+/* =========================================
+   1. O CONTROLE REMOTO (HUD)
+   Canto Inferior Direito - Pequeno e Discreto
+   ========================================= */
+
+#kudo-overlay {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 220px; /* Bem mais estreito */
+    height: auto; /* Altura ajustável ao conteúdo */
+    background: rgba(20, 20, 20, 0.85); /* Dark Mode elegante */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 2147483647;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    opacity: 0; /* Animação de entrada */
+    transform: translateY(20px);
+}
+
+/* Estado visível (adicionado via JS) */
+#kudo-overlay[style*="display: flex"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Indicador de "Gravando" (Borda Vermelha Suave) */
+#kudo-overlay.recording-live {
+    border: 1px solid rgba(255, 95, 86, 0.6);
+    box-shadow: 0 0 25px rgba(255, 95, 86, 0.15);
+}
+
+/* =========================================
+   2. CABEÇALHO E BOTÕES
+   ========================================= */
+
+#kudo-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+/* Botão de Idioma (Pill Tag) */
+.lang-switch {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+.lang-switch:hover { background: rgba(255,255,255,0.2); }
+
+/* Switch de Fonte (Mic vs Tab) - Super Compacto */
+.source-switch {
+    display: flex;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    padding: 3px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.source-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    color: #888;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.source-btn.active {
+    background: rgba(255,255,255,0.15);
+    color: white;
+}
+
+/* =========================================
+   3. O ORB (VISUALIZADOR)
+   Agora menor e central
+   ========================================= */
+
+#kudo-orb {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Azul Tech */
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+/* Animação quando ativo */
+#kudo-orb.listening {
+    animation: breathe 2s infinite;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); /* Vermelho/Rosa Gravação */
+    box-shadow: 0 4px 20px rgba(255, 154, 158, 0.4);
+}
+
+@keyframes breathe {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* SVG do ícone dentro do Orb */
+#kudo-orb svg { width: 24px; height: 24px; }
+
+/* Texto de Status (Pequeno) */
+#kudo-status {
+    margin-top: 12px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+}
+
+.hint {
+    margin-top: 8px;
+    font-size: 9px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   4. A LEGENDA DE CINEMA (CENTRAL)
+   Onde a mágica acontece
+   ========================================= */
+
+#kudo-subtitle-box {
+    position: fixed;
+    bottom: 80px; /* Altura confortável para leitura */
+    left: 50%;
+    transform: translateX(-50%) translateY(20px); /* Começa um pouco para baixo */
+    
+    /* Design da Caixa */
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 50px; /* Pill Shape */
+    border: 1px solid rgba(255,255,255,0.1);
+    
+    /* Tipografia */
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px; /* Grande e legível */
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    white-space: nowrap; /* Evita quebra de linha feia se possível */
+    max-width: 80vw;
+    
+    /* Comportamento */
+    z-index: 2147483647;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Quando o texto aparece */
+#kudo-subtitle-box.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Sobe suavemente */
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Kudo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { width: 300px; padding: 15px; font-family: sans-serif; text-align: center; }
+        button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            margin: 10px 0;
+        }
+        button.recording { background-color: #f44336; animation: pulse 1.5s infinite; }
+        #status { font-size: 12px; color: #666; margin-bottom: 10px; }
+        #output { 
+            margin-top: 15px; 
+            padding: 10px; 
+            background: #f9f9f9; 
+            border: 1px solid #ddd; 
+            min-height: 50px; 
+            text-align: left;
+            font-size: 14px;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <h3>🎙️ Mini KUDO</h3>
+    <div id="status">Pronto para ouvir</div>
+    
+    <button id="btnRecord">Gravar</button>
+
+    <button id="btnRecord">Gravar</button>
+    
+    <div style="margin: 10px 0; font-size: 14px;">
+        <label>
+            <input type="checkbox" id="chkContinuous"> Modo Reunião (Loop) 🔄
+        </label>
+    </div>
+
+    <div id="output">O texto aparecerá aqui...</div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

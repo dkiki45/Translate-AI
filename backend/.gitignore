@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+
+# Mac System files
+.DS_Store
+
+# Application Specific
+temp_audio/
+*.wav
+*.mp3
+
+# IDE
+.vscode/
